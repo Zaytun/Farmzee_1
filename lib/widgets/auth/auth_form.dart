@@ -117,8 +117,8 @@ class _AuthFormState extends State<AuthForm> {
                     },
                   ),
                   SizedBox(height: 12,),
-                  RaisedButton(child: Text(_isLogin? 'Login': 'Signup'),onPressed: _trySubmit,),
-                  FlatButton( child: Text(_isLogin?'Create New Account':'Already have an account'), onPressed: (){
+                  MaterialButton(child: Text(_isLogin? 'Login': 'Signup'),onPressed: _trySubmit,),
+                  MaterialButton( child: Text(_isLogin?'Create New Account':'Already have an account'), onPressed: (){
                    setState(() {
                      _isLogin = !_isLogin;
                    });

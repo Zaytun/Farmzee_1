@@ -1,5 +1,7 @@
+import 'package:ecommerce/providers/auth_provider.dart';
 import 'package:ecommerce/screens/auth_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/products_overview_screen.dart';
 import './screens/product_detail_screen.dart';
@@ -13,7 +15,10 @@ import './screens/user_products_screen.dart';
 import './screens/edit_product_screen.dart';
 
 
-void main() {
+Future<void>  main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
@@ -24,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
         ChangeNotifierProvider(
         create: (ctx)=> Products(),),
+      ChangeNotifierProvider(create: (_) => AuthProvider()),
       ChangeNotifierProvider(
         create: (ctx)=> Cart(),),
       ChangeNotifierProvider(

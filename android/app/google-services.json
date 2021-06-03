@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:645138055797:android:bf8cddf81d1c1b97da6e3c",
+        "mobilesdk_app_id": "1:645138055797:android:58c07bcb5029a504da6e3c",
         "android_client_info": {
           "package_name": "com.ridwan.ecommerce"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "645138055797-gp42b0div8nmit21jdnutdn60d43nfvo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ridwan.ecommerce",
+            "certificate_hash": "022c8f18604e5b294d406a0463438999633a9383"
+          }
+        },
         {
           "client_id": "645138055797-aq95c7cms8d48e828dm2p4lej7j9b4ee.apps.googleusercontent.com",
           "client_type": 3

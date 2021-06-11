@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class AuthProvider with ChangeNotifier {
   Future createUser(
-      {String firstName, String lastName,String email,String password, BuildContext context}) async {
+      {String fullName, String phoneNumber,String email,String password, BuildContext context}) async {
     final _auth = FirebaseAuth.instance;
     final _userCredential = await _auth.createUserWithEmailAndPassword(
       email: email,
@@ -14,14 +14,11 @@ class AuthProvider with ChangeNotifier {
     if(_userCredential.user.uid != null){
       await FirebaseFirestore.instance.collection('users').doc(_userCredential.user.uid).set({
         "id": _userCredential.user.uid,
-        "firstname": firstName,
-        "lastname": lastName,
+        "fullName": fullName,
+        "phoneNumber": phoneNumber,
         "email": email,
       });
 
-
-
-      /// redirect user to main page
 
     }
 
@@ -45,6 +42,21 @@ class AuthProvider with ChangeNotifier {
 
       /// redirect user to main page.
     }
+  }
+
+  Future<bool> logout() async {
+    try {
+      final _auth = FirebaseAuth.instance;
+      await _auth.signOut();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+   Future<void> sendPasswordReset({String email}) async {
+    final _auth = FirebaseAuth.instance;
+    await _auth.sendPasswordResetEmail(email: email);
   }
 
 

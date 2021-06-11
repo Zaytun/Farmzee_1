@@ -1,6 +1,8 @@
 import 'package:ecommerce/providers/auth_provider.dart';
 import 'package:ecommerce/screens/auth_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
+import 'package:ecommerce/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/products_overview_screen.dart';
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final _userId = FirebaseAuth.instance?.currentUser?.uid;
     return MultiProvider(providers: [
         ChangeNotifierProvider(
         create: (ctx)=> Products(),),
@@ -38,16 +41,13 @@ class MyApp extends StatelessWidget {
     ],
       child: MaterialApp(
         title: 'MyShop',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.purple,
           accentColor: Colors.deepOrange,
-          buttonTheme: ButtonTheme.of(context).copyWith(
-            buttonColor: Colors.pink,
-            textTheme: ButtonTextTheme.primary,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),)
-          )
         ),
-        home:ProductsOverviewScreen(),
+
+        home: _userId != null ? ProductsOverviewScreen():LoginScreen(),
         //AuthScreen(),
         //ProductsOverviewScreen(),
         routes: {
